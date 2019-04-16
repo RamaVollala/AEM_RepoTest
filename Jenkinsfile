@@ -70,7 +70,7 @@ pipeline {
       }
     stage('Build_ConnectorData'){
       when {
-        changeRequest target:'https://github.com/RamaVollala/AEM_RepoTest.git'
+        changeRequest target:'https://github.com/RamaVollala/AEM_RepoTest/tree/master'
       }
         steps {
           sh """
