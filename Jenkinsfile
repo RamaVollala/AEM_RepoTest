@@ -58,13 +58,19 @@ pipeline {
             }
           }
         }
+        stage ('checkout: aem-local') {
+          steps {
+            dir('sw-aem-repo-test') {
+              git branch: 'master',
+                credentialsId: 'ebus-github',
+                url: 'https://github.com/RamaVollala/AEM_RepoTest.git'
+            }
+          }
+        }
       }
-    }
     stage('Build_ConnectorData'){
       when {
-        script{
-
-        }
+        changeRequest target:'https://github.com/RamaVollala/AEM_RepoTest.git'
       }
         steps {
           sh """
@@ -74,11 +80,6 @@ pipeline {
             docker kill aem_build_${JOB_BASE_NAME}_${BUILD_NUMBER}
           """
         }
-    }
-    stage('Build_FoundationData'){
-      when {
-        changerequest()
-      }
     }
   }
 }
