@@ -51,18 +51,18 @@ pipeline {
         }
       }
     }
-    stage('Build_ConnectorData'){
-      when {
-        changeRequest target:'https://github.com/RamaVollala/AEM_RepoTest/tree/master'
-      }
-        steps {
-          sh """
-            docker build -t aem_connector_build -f ./Build_ConnectorData .
-            docker run -d --name aem_connector_build_${JOB_BASE_NAME}_${BUILD_NUMBER} --rm aem_build:latest /bin/sleep 5000
-            docker cp aem_connector_build_${JOB_BASE_NAME}_${BUILD_NUMBER}:/sw-aem-connector-data/ui.apps/target/com.sherwin.aem.connector.data.ui.apps-${AEM_CONNECTOR_CODE_VERSION}.zip ./
-            docker kill aem_build_${JOB_BASE_NAME}_${BUILD_NUMBER}
-          """
-        }
+  }
+  stage('Build_ConnectorData'){
+    when {
+      changeRequest target:'https://github.com/RamaVollala/AEM_RepoTest/tree/master'
+    }
+      steps {
+        sh """
+          docker build -t aem_connector_build -f ./Build_ConnectorData .
+          docker run -d --name aem_connector_build_${JOB_BASE_NAME}_${BUILD_NUMBER} --rm aem_build:latest /bin/sleep 5000
+          docker cp aem_connector_build_${JOB_BASE_NAME}_${BUILD_NUMBER}:/sw-aem-connector-data/ui.apps/target/com.sherwin.aem.connector.data.ui.apps-${AEM_CONNECTOR_CODE_VERSION}.zip ./
+          docker kill aem_build_${JOB_BASE_NAME}_${BUILD_NUMBER}
+        """
       }
     }
   }
