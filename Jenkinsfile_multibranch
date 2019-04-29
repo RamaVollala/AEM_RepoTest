@@ -63,6 +63,7 @@ pipeline {
             docker kill aem_build_${JOB_BASE_NAME}_${BUILD_NUMBER}
           """
         }
+      }
     }
   }
 }
