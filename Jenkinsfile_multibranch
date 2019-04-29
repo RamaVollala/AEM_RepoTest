@@ -26,7 +26,7 @@ pipeline {
         stage ('checkout: sw-aem-foundation-core') {
           steps {
             dir('sw-aem-foundation-core') {
-              git branch: params.SW_AEM_FOUNDATION_CORE_BRANCH,
+              git branch: 'master',
                 credentialsId: 'ebus-github',
                 url: 'https://github.sherwin.com/SherwinWilliams/sw-aem-foundation-core/'
             }
