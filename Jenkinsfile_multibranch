@@ -17,6 +17,7 @@ pipeline {
         stage ('checkout: sw-aem-infrastructure') {
           steps {
             dir('sw-aem-infrastructure') {
+              poll:true,
               git branch: 'master',
                 credentialsId: 'ebus-github',
                 url: 'https://github.sherwin.com/SherwinWilliams/sw-aem-infrastructure/'
@@ -26,6 +27,7 @@ pipeline {
         stage ('checkout: sw-aem-foundation-core') {
           steps {
             dir('sw-aem-foundation-core') {
+              poll:true,
               git branch: 'master',
                 credentialsId: 'ebus-github',
                 url: 'https://github.sherwin.com/SherwinWilliams/sw-aem-foundation-core/'
