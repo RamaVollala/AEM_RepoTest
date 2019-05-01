@@ -36,9 +36,21 @@ pipeline {
         }
       }
     }
+    stage ('checkout: Martinsebour Landing') {
+      steps {
+        dir('MartinSenourLanding') {
+          git(
+            poll:true,
+             branch: 'develop',
+              credentialsId: 'ebus-github',
+              url: 'https://github.com/RamaVollala/MartinSenourLanding.git'
+            )
+        }
+      }
+    }
   stage('Build_ConnectorData'){
     when {
-      changeRequest target:'https://github.com/RamaVollala/AEM_RepoTest/tree/master'
+      triggeredBy 'SCMTrigger'
     }
       steps {
         sh """
