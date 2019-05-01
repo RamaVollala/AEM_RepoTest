@@ -1,6 +1,8 @@
 FROM docker.cpartdc01.sherwin.com/ecomm/apps/aem_java:latest
+
 ARG proxy_config
 #Install Maven
+
 RUN cd /usr/local \
   && curl 'https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.5.3/apache-maven-3.5.3-bin.tar.gz' -o apache-maven-3.5.3-bin.tar.gz \
   && tar -xzf apache-maven-3.5.3-bin.tar.gz \
