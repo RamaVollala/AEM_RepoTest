@@ -13,6 +13,9 @@ ADD sw-aem-connector-data/core.gen/src/main/resources/swagger/ /sw-aem-connector
 ADD sw-aem-connector-data/core.gen/src/main/resources/jsonschema2pojo/ /sw-aem-connector-data/core.gen/src/main/resources/jsonschema2pojo/
 ADD sw-aem-connector-data/build-tools/src/main/resources/sherwinaem/pmd-ruleset.xml /sw-aem-connector-data/build-tools/src/main/resources/sherwinaem/pmd-ruleset.xml
 
-RUN cd /sw-aem-connector-data && mvn --fail-at-end clean install package -PautoInstallBundleArtifactory $proxy_config; \
+
+RUN cd /sw-aem-connector-data
+
+RUN mvn --fail-at-end clean install package -PautoInstallBundleArtifactory $proxy_config; \
   mvn --settings core.gen/settings.xml --fail-at-end versions:set -DnewVersion=1.0.0-SNAPSHOT -PautoInstallBundleArtifactory $proxy_config; \
   find /sw-aem-connector-data/ -maxdepth 3 -type d -name target|xargs rm -rf; exit 0
