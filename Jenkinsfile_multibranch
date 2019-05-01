@@ -15,10 +15,12 @@ pipeline {
     stage ('checkout: sw-aem-infrastructure') {
       steps {
         dir('sw-aem-infrastructure') {
-          poll:true,
-          git branch: 'master',
-            credentialsId: 'ebus-github',
-            url: 'https://github.sherwin.com/SherwinWilliams/sw-aem-infrastructure/'
+          git(
+            poll:true,
+             branch: 'master',
+              credentialsId: 'ebus-github',
+              url: 'https://github.sherwin.com/SherwinWilliams/sw-aem-infrastructure/'
+            )
         }
       }
     }
