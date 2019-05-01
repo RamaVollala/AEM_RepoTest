@@ -12,27 +12,25 @@ pipeline {
     pollSCM('H/5 * * * *')
   }
   stages{
-    stage('checkoout') {
-      parallel{
-        stage ('checkout: sw-aem-infrastructure') {
-          steps {
-            dir('sw-aem-infrastructure') {
-              poll:true,
-              git branch: 'master',
-                credentialsId: 'ebus-github',
-                url: 'https://github.sherwin.com/SherwinWilliams/sw-aem-infrastructure/'
-            }
-          }
+    stage ('checkout: sw-aem-infrastructure') {
+      steps {
+        dir('sw-aem-infrastructure') {
+          poll:true,
+          git branch: 'master',
+            credentialsId: 'ebus-github',
+            url: 'https://github.sherwin.com/SherwinWilliams/sw-aem-infrastructure/'
         }
-        stage ('checkout: sw-aem-foundation-core') {
-          steps {
-            dir('sw-aem-foundation-core') {
-              poll:true,
-              git branch: 'master',
-                credentialsId: 'ebus-github',
-                url: 'https://github.sherwin.com/SherwinWilliams/sw-aem-foundation-core/'
-            }
-          }
+      }
+    }
+    stage ('checkout: sw-aem-foundation-core') {
+      steps {
+        dir('sw-aem-foundation-core') {
+          git(
+            poll:true,
+             branch: 'develop',
+              credentialsId: 'ebus-github',
+              url: 'https://github.com/RamaVollala/AEM_RepoTest.git'
+            )
         }
       }
     }
