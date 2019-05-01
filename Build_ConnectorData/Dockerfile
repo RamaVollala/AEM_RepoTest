@@ -20,4 +20,4 @@ RUN mvn --fail-at-end clean install package -PautoInstallBundleArtifactory $prox
   mvn --settings core.gen/settings.xml --fail-at-end versions:set -DnewVersion=1.0.0-SNAPSHOT -PautoInstallBundleArtifactory $proxy_config; \
   find /sw-aem-connector-data/ -maxdepth 3 -type d -name target|xargs rm -rf; exit 0
 
-RUN echo "this is working"
+RUN echo "this is time checking for multibranch pipeline working"
