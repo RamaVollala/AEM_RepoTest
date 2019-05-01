@@ -36,14 +36,14 @@ pipeline {
         }
       }
     }
-    stage ('checkout: Martinsebour Landing') {
+    stage ('checkout: connector data') {
       steps {
-        dir('MartinSenourLanding') {
+        dir('coonectordata') {
           git(
             poll:true,
              branch: 'develop',
               credentialsId: 'ebus-github',
-              url: 'https://github.com/RamaVollala/MartinSenourLanding.git'
+              url: 'https://github.sherwin.com/RXV492/sw-aem-connector-data.git'
             )
         }
       }
